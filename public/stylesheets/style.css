@@ -1,0 +1,52 @@
+
+body {
+  background-color: #222222;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+
+[data-role="page"] {
+  background-color: #222222;
+}
+
+
+[data-role="navbar"] a {
+  background-color: #2f89fc !important;
+  color: white !important;
+}
+[data-role="header"] {
+  background-color: #222222 !important;
+  
+}
+[data-role="page"],
+[data-role="header"],
+[data-role="main"],
+[data-role="footer"],
+[data-role="listview"],
+.ui-btn,
+.ui-content {
+color: #ffffff !important;
+}
+input[type="text"],
+input[type="number"] {
+background-color: #888888;
+color: white;
+}
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+color: #ffffff;
+}
+#foodUl li {
+  background-color: #777777;
+  color: white !important;
+}
+#foodUl li,
+#Today li {
+  background-color: #777777;
+}
+#todayList li {
+  background-color: #777777;
+  color: white;
+}
+
