@@ -9,9 +9,9 @@ let FoodObject = function (calories, fats, proteins, carbs, foodName) {
     this.ID = Math.random().toString(16).slice(5)
 };
 
-foodArray.push(new FoodObject(250, 10, 20, 30, "Grilled chicken"));
-foodArray.push(new FoodObject(100, 5, 2, 10, "Salad"));
-foodArray.push(new FoodObject(400, 25, 30, 45, "Steak"));
+// foodArray.push(new FoodObject(250, 10, 20, 30, "Grilled chicken"));
+// foodArray.push(new FoodObject(100, 5, 2, 10, "Salad"));
+// foodArray.push(new FoodObject(400, 25, 30, 45, "Steak"));
 
 let selectedType = "";
 
@@ -59,12 +59,18 @@ function createList() {
     var foodUl = document.getElementById("foodUl");
     foodUl.innerHTML = "";
 
-    foodArray.forEach(function (element,) {
-        var li = document.createElement('li');
-        li.innerHTML = element.foodName + ": " + element.calories + " calories, " + element.fats + "g fat, " + element.proteins + "g protein, " + element.carbs + "g carbs" ;
-        foodUl.appendChild(li);
-    });
-    
+$.get("/getFoods", function(data, status){
+foodArray = data;
+
+foodArray.forEach(function (element,) {
+  var li = document.createElement('li');
+  li.innerHTML = element.foodName + ": " + element.calories + " calories, " + element.fats + "g fat, " + element.proteins + "g protein, " + element.carbs + "g carbs" ;
+  foodUl.appendChild(li);
+});
+
+};)
+
+
 };
 function calculateTotalCalories() {
   let totalCalories = 0;
