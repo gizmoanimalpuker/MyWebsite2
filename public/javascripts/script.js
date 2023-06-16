@@ -31,15 +31,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("dataInput").value
       ));
   
-      localStorage.setItem("foodArray", JSON.stringify(foodArray));
-  
-      document.getElementById("calorieInput").value = "";
-      document.getElementById("fatInput").value = "";
-      document.getElementById("proteinInput").value = "";
-      document.getElementById("carbInput").value = "";
-      document.getElementById("dataInput").value = "";
-  
-      createList();
+        $.ajax({
+            url: "/addFood",
+            type: "POST",
+            data: JSON.stringify(newFood),
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                console.log(result);
+                foodArray.push(newFood);
+                createList();
+                document.location.href = "index.html#viewFoods";
+            }
+        });
+
+        document.getElementById("calorieInput").value = "";
+        document.getElementById("fatInput").value = "";
+        document.getElementById("proteinInput").value = "";
+        document.getElementById("carbInput").value = "";
+        document.getElementById("dataInput").value = "";
     });
   
     $(document).on("pagebeforeshow", "#view-foods-page", function (event) {
@@ -52,8 +61,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     $(document).on("change", "#select-type", function (event, ui) {
       selectedType = document.getElementById("select-type").value;
     });
-  });
-  
+});
 
 function createList() {
     var foodUl = document.getElementById("foodUl");
@@ -71,7 +79,6 @@ foodArray.forEach(function (element,) {
 };)
 
 
-};
 function calculateTotalCalories() {
   let totalCalories = 0;
   for (let i = 0; i < foodArray.length; i++) {
@@ -93,7 +100,6 @@ function calculateMacronutrients() {
 }
 
 function checkHealthiness() {
-
   let totalCalories = 0;
   let totalCarbs = 0;
   let totalProteins = 0;
